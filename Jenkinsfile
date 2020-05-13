@@ -15,8 +15,11 @@ pipeline {
         }
         stage('Test') { 
             steps {
+		    script {
 	      def mavenPom = readMavenPom file: 'pom.xml'
+			   
 		    echo "version ${mavenPom.version}"
+		    }
             }
         }
     }
