@@ -10,17 +10,18 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
+		         script {
+	      def mavenPom = readMavenPom file: 'pom.xml'	   
+	      env.version = mavenPom.version
+		    } 
 		
                 sh 'mvn clean package'
             }
         }
         stage('Test') { 
             steps {
-		     script {
-	      def mavenPom = readMavenPom file: 'pom.xml'	   
-	      env.version = mavenPom.version
-		    }    	   
-	   
+		   	   
+		    echo "version ${mavenPom.version}"
 		   
             }
         }
