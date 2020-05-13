@@ -26,9 +26,11 @@ pipeline {
             }
         }
   stage('SonarQube analysis') {
+	   steps {
     withSonarQubeEnv('sonar-server') {
       sh 'mvn sonar:sonar'
     } // submitted SonarQube taskId is automatically attached to the pipeline context
+   }
   }
     }
 }
