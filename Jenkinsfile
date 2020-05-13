@@ -1,9 +1,9 @@
 pipeline {
     agent any 
 	options {
-  disableConcurrentBuilds()
-  buildDiscarder(logRotator(numToKeepStr: '5'))
-}
+	  disableConcurrentBuilds()
+	  buildDiscarder(logRotator(numToKeepStr: '5'))
+	}
 	tools {
          maven 'MAVEN_HOME'
      }
@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                // 
+                echo "test"
             }
         }
     }
