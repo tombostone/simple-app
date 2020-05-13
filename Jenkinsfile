@@ -21,7 +21,7 @@ pipeline {
         stage('Test') { 
             steps {
 		   	   
-		    echo "version ${mavenPom.version}"
+		    echo "version ${env.version}"
 		   
             }
         }
