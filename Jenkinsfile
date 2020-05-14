@@ -15,13 +15,14 @@ pipeline {
 	      env.version = mavenPom.version
 		    } 
 		
-                sh 'mvn clean package'
+                sh 'mvn clean install -U -Dmaven.test.skip=true'
             }
         }
         stage('Test') { 
             steps {
 		   	   
 		    echo "version ${env.version}"
+		    sh 'mvn test'
 		   
             }
         }
