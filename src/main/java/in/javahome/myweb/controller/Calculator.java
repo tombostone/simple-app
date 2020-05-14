@@ -3,7 +3,11 @@ package in.javahome.myweb.controller;
  * 
  */
 public class Calculator {
-	
+	int a;
+	int b;
+	void a987aeaes() {
+
+	}
 	/*
 	 * @param i
 	 * @param j
