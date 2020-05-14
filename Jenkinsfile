@@ -25,12 +25,30 @@ pipeline {
 		   
             }
         }
-  stage('SonarQube analysis') {
+
+    stage('SonarQube analysis') {
 	   steps {
-    withSonarQubeEnv('sonar-server') {
-      sh 'mvn sonar:sonar'
-    } // submitted SonarQube taskId is automatically attached to the pipeline context
+         withSonarQubeEnv('sonar-server') {
+             sh 'mvn sonar:sonar'
+    } 
    }
   }
-    }
+
+     stage('Quality Gate check') {
+	   steps {
+           timeout(20) {
+  
+            def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+        }
+
+            }
+
+
+   }
+
+  }
+
+}
 }
