@@ -41,6 +41,7 @@ pipeline {
   
             def qg = waitForQualityGate()
               if (qg.status != 'OK') {
+                   manager.addShortText("Quality gate failed", 'white', '#EF0000', '1px', 'red')
             error "Pipeline aborted due to quality gate failure: ${qg.status}"
           }
 
